@@ -6,10 +6,19 @@ import { Component } from '@angular/core';
   styleUrls: ['./login-screen.component.scss']
 })
 export class LoginScreenComponent {
-
-  onstructor() { }
+  //Aquí se definen las variables
+  //Para acceder a variables en HTML: {{variable}}
+  //Para acceder a funcioenes en HTML: (click) = "nombre_fun(-argumentos-)" 
+  public type: String = "password";
+  constructor() { }
 
   ngOnInit(): void {
+  }
+  public login(){
+
+  }
+  public showPassword(){
+    
   }
 
 }
