@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-screen',
@@ -10,15 +11,33 @@ export class LoginScreenComponent {
   //Para acceder a variables en HTML: {{variable}}
   //Para acceder a funcioenes en HTML: (click) = "nombre_fun(-argumentos-)" 
   public type: String = "password";
-  constructor() { }
+  public username: String = "";
+  public password: String = "";
+  
+
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
   }
   public login(){
+    if(this.username == ""){
+      
+    }else{
 
+    }
   }
   public showPassword(){
-    
+    if(this.type == "password"){
+      this.type = "text";
+    }else{
+      this.type = "password";
+    }
+  }
+
+  public goRegistro(){
+    this.router.navigate(["registro"]);
   }
 
 }
