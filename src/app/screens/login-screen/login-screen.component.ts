@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-screen',
@@ -13,7 +13,8 @@ export class LoginScreenComponent {
   public type: String = "password";
   public username: String = "";
   public password: String = "";
-  
+
+  public errors:any = {};
 
   constructor(
     private router: Router
@@ -21,13 +22,16 @@ export class LoginScreenComponent {
 
   ngOnInit(): void {
   }
+
   public login(){
     if(this.username == ""){
-      
-    }else{
-
+      this.errors.username = "Campo requerido";
+    }
+    if(this.password == ""){
+      this.errors.password = "Campo requerido";
     }
   }
+
   public showPassword(){
     if(this.type == "password"){
       this.type = "text";
@@ -39,6 +43,7 @@ export class LoginScreenComponent {
   public goRegistro(){
     this.router.navigate(["registro"]);
   }
+
 
 }
 
