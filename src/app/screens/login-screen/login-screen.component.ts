@@ -44,6 +44,10 @@ export class LoginScreenComponent {
     this.router.navigate(["registro"]);
   }
 
+  public goNewLogin(){
+    this.router.navigate(["nuevoLogin"]);
+  }
+
 
 }
 

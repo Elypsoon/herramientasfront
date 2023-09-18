@@ -7,6 +7,8 @@ import { LoginScreenComponent } from './screens/login-screen/login-screen.compon
 import { RegistroScreenComponent } from './screens/registro-screen/registro-screen.component';
 import { HomeScreenComponent } from './screens/home-screen/home-screen.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NuevoLoginComponent } from './screens/nuevo-login/nuevo-login.component';
+
 //Angular material
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
@@ -16,7 +18,8 @@ import {MatButtonModule} from '@angular/material/button';
     AppComponent,
     LoginScreenComponent,
     RegistroScreenComponent,
-    HomeScreenComponent
+    HomeScreenComponent,
+    NuevoLoginComponent
   ],
   imports: [
     BrowserModule,
