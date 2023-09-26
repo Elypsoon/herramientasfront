@@ -1,38 +1,82 @@
-<div class="accordion" id="accordionExample">
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="headingOne">
-        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-          Accordion Item #1
-        </button>
-      </h2>
-      <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-        <div class="accordion-body">
-          <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-        </div>
+<section class="registro-user">
+  <div class="wrapper">
+      <!-- Va a englobar todo el formulario con la cabecera -->
+      <div class="section-registro">
+          <div class="header-registro">
+              <mat-icon class="icon-back" (click)="regresar()">arrow_back</mat-icon>
+              <span *ngIf="!editar" class="title">Registrarse</span>
+              <span *ngIf="editar" class="title">Actualizar usuario</span>
+              <mat-icon class="icon-forward">arrow_forward</mat-icon>
+          </div>
+          <div class="body-registro">
+              <mat-form-field class="mat-input" appearance="outline">
+                  <mat-label>ID/Matrícula</mat-label>
+                  <input matInput [(ngModel)]="user.matricula" name="id" placeholder="Escribe ID o matrícula">
+              </mat-form-field>
+              
+              <mat-form-field class="mat-input" appearance="outline">
+                  <mat-label>Nombre</mat-label>
+                  <input matInput [(ngModel)]="user.first_name" placeholder="Escribe nombre">
+              </mat-form-field>
+
+              <mat-form-field class="mat-input" appearance="outline">
+                  <mat-label>Apellidos</mat-label>
+                  <input matInput [(ngModel)]="user.last_name" placeholder="Escribe apellidos">
+              </mat-form-field>
+
+              <mat-form-field class="mat-input" appearance="outline">
+                <mat-label>Correo eletrónico</mat-label>
+                <input matInput [(ngModel)]="user.email" placeholder="Escribe tu correo electrónico">
+            </mat-form-field>
+
+            <mat-form-field class="mat-input" appearance="outline">
+                <mat-label>Contraseña</mat-label>
+                <input matInput [(ngModel)]="user.password" type="{{type}}" placeholder="Escribe una contraseña" >
+                
+            </mat-form-field>
+
+            <mat-form-field class="mat-input" appearance="outline">
+                <mat-label>Confirmar contraseña</mat-label>
+                <input matInput [(ngModel)]="user.confirmar_password" type="{{type}}" placeholder="Vuelve a escribir la contraseña" >
+            </mat-form-field>
+
+            <mat-form-field class="mat-input" appearance="outline">
+                <mat-label>Fecha de nacimiento</mat-label>
+                <input matInput [matDatepicker]="picker" [(ngModel)]="user.fecha_nacimiento" (focus)="picker.open()" placeholder="Agregar fecha">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field class="mat-input" appearance="outline">
+                <mat-label>CURP</mat-label>
+                <input matInput [(ngModel)]="user.curp" placeholder="Escribe tu CURP">
+            </mat-form-field>
+
+            <mat-form-field class="mat-input" appearance="outline">
+                <mat-label>RFC</mat-label>
+                <input matInput [(ngModel)]="user.rfc" placeholder="Escribe tu RFC">
+            </mat-form-field>
+
+            <mat-form-field class="mat-input" appearance="outline">
+                <mat-label>Edad</mat-label>
+                <input matInput [(ngModel)]="user.edad" placeholder="Escribe tu edad">
+            </mat-form-field>
+
+            <mat-form-field class="mat-input" appearance="outline">
+                <mat-label>Teléfono</mat-label>
+                <input matInput [(ngModel)]="user.telefono" placeholder="Escribe tu número de teléfono">
+            </mat-form-field>
+
+            <mat-form-field class="mat-input" appearance="outline">
+                <mat-label>Ocupación</mat-label>
+                <input matInput [(ngModel)]="user.ocupacion" placeholder="Escribe tu ocupación">
+            </mat-form-field>
+
+            <div class="buttons">
+                <button class="btn btn-primary cancel" type="submit">Cancelar</button>
+                <button class="btn btn-primary regis" type="submit">Registrar</button>
+            </div>
+          </div>
       </div>
-    </div>
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="headingTwo">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-          Accordion Item #2
-        </button>
-      </h2>
-      <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-        <div class="accordion-body">
-          <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-        </div>
-      </div>
-    </div>
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="headingThree">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-          Accordion Item #3
-        </button>
-      </h2>
-      <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-        <div class="accordion-body">
-          <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-        </div>
-      </div>
-    </div>
   </div>
+</section>
