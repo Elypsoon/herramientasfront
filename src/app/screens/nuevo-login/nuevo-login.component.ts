@@ -41,4 +41,8 @@ export class NuevoLoginComponent {
     this.router.navigate(["registro"]);
   }
 
+  public goProductos(){
+    this.router.navigate(["productos"]);
+  }
+
 }
