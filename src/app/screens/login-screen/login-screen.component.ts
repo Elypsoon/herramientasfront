@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FacadeService } from 'src/app/services/facade.service';
+declare var $:any;
 
 @Component({
   selector: 'app-login-screen',
@@ -16,20 +18,57 @@ export class LoginScreenComponent {
 
   public errors:any = {};
 
+  public users_registrados: any = [];
+
   constructor(
-    private router: Router
+    private router: Router,
+    public facadeService: FacadeService
   ) { }
 
   ngOnInit(): void {
+    this.llenadousuarios();
+  }
+
+  public llenadousuarios(){
+    this.users_registrados = [
+      {
+      'matricula': '202223500',
+      'first_name': 'Ángel',
+      'last_name': 'Gutiérrez',
+      'email': 'qwertyuiop@gmail.com',
+      'password': '1234567890',
+      'confirmar_password': '1234567890',
+      'fecha_nacimiento': '2004-01-05',
+      'curp': 'ASDFGHJKLÑQWERTYUI',
+      'rfc': 'ASDFGHJKLÑQWERTYUI',
+      'edad': '19',
+      'telefono': '2222',
+      'ocupacion': 'Estudiante',
+      }
+    ];
+    console.log("Ususario es: ", this.users_registrados)
   }
 
   public login(){
-    if(this.username == ""){
-      this.errors.username = "Campo requerido";
+    this.errors = [];
+
+    this.errors = this.facadeService.validarLogin(this.username, this.password);
+    if(!$.isEmptyObject(this.errors)){
+      return false;
     }
-    if(this.password == ""){
-      this.errors.password = "Campo requerido";
-    }
+
+    this.users_registrados.forEach(user => {
+      if(user.email == this.username){
+        if(user.password == this.password){
+          alert("Usuario correcto");
+          this.router.navigate(["home"]);
+        }else{
+          alert("Contraseña incorrecta");
+        }
+      }else{
+        alert("Usuario incorrecto");
+      }
+    });
   }
 
   public showPassword(){
@@ -47,7 +86,4 @@ export class LoginScreenComponent {
   public goNewLogin(){
     this.router.navigate(["nuevoLogin"]);
   }
-
-
 }
-

@@ -41,8 +41,8 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
     MatIconModule,
     FormsModule,
     MatDatepickerModule,
-    MatNativeDateModule
-    //NgxMaskModule.forRoot(options)
+    MatNativeDateModule,
+    NgxMaskModule.forRoot(options)
     ],
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: 'es-ES'},
