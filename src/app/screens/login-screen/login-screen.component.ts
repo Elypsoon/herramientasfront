@@ -19,6 +19,9 @@ export class LoginScreenComponent {
   public errors:any = {};
 
   public users_registrados: any = [];
+  public logeo: boolean = false;
+  public flag_email: boolean = false;
+  public flag_pwd: boolean = false;
 
   constructor(
     private router: Router,
@@ -26,49 +29,32 @@ export class LoginScreenComponent {
   ) { }
 
   ngOnInit(): void {
-    this.llenadousuarios();
+    
   }
 
-  public llenadousuarios(){
-    this.users_registrados = [
-      {
-      'matricula': '202223500',
-      'first_name': 'Ángel',
-      'last_name': 'Gutiérrez',
-      'email': 'qwertyuiop@gmail.com',
-      'password': '1234567890',
-      'confirmar_password': '1234567890',
-      'fecha_nacimiento': '2004-01-05',
-      'curp': 'ASDFGHJKLÑQWERTYUI',
-      'rfc': 'ASDFGHJKLÑQWERTYUI',
-      'edad': '19',
-      'telefono': '2222',
-      'ocupacion': 'Estudiante',
-      }
-    ];
-    console.log("Ususario es: ", this.users_registrados)
-  }
+  //Aquí van las funciones de validación
 
   public login(){
+    //Validar
     this.errors = [];
 
     this.errors = this.facadeService.validarLogin(this.username, this.password);
     if(!$.isEmptyObject(this.errors)){
       return false;
     }
-
-    this.users_registrados.forEach(user => {
-      if(user.email == this.username){
-        if(user.password == this.password){
-          alert("Usuario correcto");
-          this.router.navigate(["home"]);
-        }else{
-          alert("Contraseña incorrecta");
-        }
-      }else{
-        alert("Usuario incorrecto");
+    console.log("Pasó validación");
+    
+    this.facadeService.login(this.username, this.password).subscribe(
+      (response)=>{
+        console.log(response);
+        this.facadeService.saveUserData(response);
+        this.router.navigate(["home"]);
+      }, (error)=>{
+        alert("No se pudo iniciar sesión");
       }
-    });
+    );
+    
+    
   }
 
   public showPassword(){
@@ -79,11 +65,12 @@ export class LoginScreenComponent {
     }
   }
 
+  public goNewLogin(){
+    this.router.navigate(["nuevoLogin"]);
+  }
+
   public goRegistro(){
     this.router.navigate(["registro"]);
   }
 
-  public goNewLogin(){
-    this.router.navigate(["nuevoLogin"]);
-  }
-}
+}//Fin clase
