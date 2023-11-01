@@ -73,7 +73,7 @@ export class HomeScreenComponent {
   }
 
   public goEditar(idUser: number){
-    //this.router.navigate(["registro/"+idUser]);
+    this.router.navigate(["registro/"+idUser]);
   }
 
   //Función para eliminar
