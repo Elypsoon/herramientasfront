@@ -21,6 +21,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
 //Cambia el idioma a español
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 //Mask
@@ -48,7 +49,8 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
     MatNativeDateModule,
     NgxMaskModule.forRoot(options),
     HttpClientModule,
-    MatTableModule
+    MatTableModule,
+    MatPaginatorModule
     ],
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: 'es-ES'},
