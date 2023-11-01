@@ -6,6 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { UsuariosService } from 'src/app/services/usuarios.service';
 import { MatDialog } from '@angular/material/dialog';
+import { EliminarUserModalComponent } from 'src/app/modals/eliminar-user-modal/eliminar-user-modal.component';
 
 @Component({
   selector: 'app-home-screen',
@@ -30,7 +31,7 @@ export class HomeScreenComponent {
     private facadeService: FacadeService,
     private location: Location,
     private usuariosService: UsuariosService,
-    //public dialog: MatDialog
+    public dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -78,7 +79,24 @@ export class HomeScreenComponent {
 
   //Función para eliminar
   public delete(idUser: number){
-    
+    console.log("User:", idUser);
+    const dialogRef = this.dialog.open(EliminarUserModalComponent,{
+      data: {id: idUser}, //Se pasan valores a través del componente
+      height: '268px',
+      width: '328px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result.isDelete){
+        console.log("Usuario eliminado");
+        //Recargar página
+        window.location.reload();
+      }else{
+        alert("Usuario no eliminado ");
+        console.log("No se eliminó el usuario");
+        //alert("No se eliminó el usuario");
+      }
+    });
   }
 
   public obtenerUsuarios(){
