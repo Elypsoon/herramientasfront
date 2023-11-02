@@ -25,6 +25,13 @@ export class EliminarUserModalComponent implements OnInit {
   }
 
   public eliminarUser(){
-    
+    this.ususariosService.eliminarUsuario(this.data.id).subscribe(
+      (response)=>{
+        console.log(response);
+        this.dialogRef.close({isDelete:true});
+      }, (error)=>{
+        this.dialogRef.close({isDelete:false});
+      }
+    );
   }
 }
