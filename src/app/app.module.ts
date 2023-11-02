@@ -28,6 +28,7 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
 //Mask
 import { NgxMaskModule, IConfig } from 'ngx-mask';
 import { EliminarUserModalComponent } from './modals/eliminar-user-modal/eliminar-user-modal.component';
+import { MateriasScreenComponent } from './screens/materias-screen/materias-screen.component';
 
 //Options mask
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
@@ -38,7 +39,8 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
     RegistroScreenComponent,
     HomeScreenComponent,
     ProductoRegistroScreenComponent,
-    EliminarUserModalComponent
+    EliminarUserModalComponent,
+    MateriasScreenComponent
   ],
   imports: [
     BrowserModule,

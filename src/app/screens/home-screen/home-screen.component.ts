@@ -77,6 +77,10 @@ export class HomeScreenComponent {
     this.router.navigate(["registro/"+idUser]);
   }
 
+  public goMaterias(){
+    this.router.navigate(["materias/"]);
+  }
+
   //Función para eliminar
   public delete(idUser: number){
     console.log("User:", idUser);
