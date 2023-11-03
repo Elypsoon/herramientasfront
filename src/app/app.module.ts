@@ -23,6 +23,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
 //Cambia el idioma a español
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 //Mask
@@ -56,7 +58,9 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
     HttpClientModule,
     MatTableModule,
     MatPaginatorModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSelectModule,
+    MatFormFieldModule
     ],
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: 'es-ES'},

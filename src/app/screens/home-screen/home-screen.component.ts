@@ -70,6 +70,11 @@ export class HomeScreenComponent {
     this.location.back();
   }
 
+  public quitarSegundos(hora: string){
+    let horaFinal = hora.split(":");
+    return horaFinal[0] + ":" + horaFinal[1];
+  }
+
   //Para paginacion
   //Paginador para Agentes
   public initPaginator(){
