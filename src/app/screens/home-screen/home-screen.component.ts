@@ -1,11 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
 import { FacadeService } from 'src/app/services/facade.service';
 import { Location } from '@angular/common';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { UsuariosService } from 'src/app/services/usuarios.service';
 import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MateriasService } from 'src/app/services/materias.service';
+
 import { EliminarUserModalComponent } from 'src/app/modals/eliminar-user-modal/eliminar-user-modal.component';
 
 @Component({
@@ -16,9 +18,15 @@ import { EliminarUserModalComponent } from 'src/app/modals/eliminar-user-modal/e
 export class HomeScreenComponent {
   public token: string = "";
   public lista_usuarios: any[] = [];
+  public lista_mat: any[] = [];
+  public materias: boolean = false;
 
+  
   displayedColumns: string[] = ['matricula', 'nombre', 'email', 'fecha_nacimiento', 'edad', 'curp', 'rfc', 'telefono', 'ocupacion', 'editar', 'eliminar'];
+  displayedColumnsMat: string[] = ['nrc', 'nombreMateria', 'seccion', 'dias', 'horaInicio', 'horaFinal', 'salon', 'programa', 'editar', 'eliminar'];
+
   dataSource = new MatTableDataSource<DatosUsuario>(this.lista_usuarios as DatosUsuario[]);
+  dataSourceMat = new MatTableDataSource<DatosMateria>(this.lista_mat as DatosMateria[]);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -30,7 +38,9 @@ export class HomeScreenComponent {
     private router: Router,
     private facadeService: FacadeService,
     private location: Location,
+    public activatedRoute: ActivatedRoute,
     private usuariosService: UsuariosService,
+    private materiasService: MateriasService,
     public dialog: MatDialog
   ) { }
 
@@ -42,10 +52,22 @@ export class HomeScreenComponent {
       this.router.navigate([""]);
     }
     //Mandar a ejecutar la función
-    this.obtenerUsuarios();
+    if(this.activatedRoute.snapshot.params['materias'] == undefined){
+      this.obtenerUsuarios();
+    }
+
+    if(this.activatedRoute.snapshot.params['materias'] != undefined){
+      this.materias = true;
+
+      this.obtenerMaterias();
+    }
 
     //Para paginador
     this.initPaginator();
+  }
+
+  public regresar(){
+    this.location.back();
   }
 
   //Para paginacion
@@ -77,8 +99,12 @@ export class HomeScreenComponent {
     this.router.navigate(["registro/"+idUser]);
   }
 
+  public goListaMat(){
+    this.router.navigate(["home/materias"]);
+  }
+
   public goMaterias(){
-    this.router.navigate(["materias/"]);
+    this.router.navigate(["registro-mat/"]);
   }
 
   //Función para eliminar
@@ -123,6 +149,20 @@ export class HomeScreenComponent {
     );
   }
 
+  public obtenerMaterias(){
+    this.materiasService.obtenerListaMaterias().subscribe(
+      (response)=>{
+        this.lista_mat = response;
+        console.log("Lista materias: ", this.lista_mat);
+        if(this.lista_mat.length > 0){
+          this.dataSourceMat = new MatTableDataSource<DatosMateria>(this.lista_mat as DatosMateria[]);
+        }
+      }, (error)=>{
+        alert("No se pudo obtener la lista de usuarios");
+      }
+    );
+  }
+
   public logout(){
     this.facadeService.logout().subscribe(
       (response)=>{
@@ -151,4 +191,15 @@ export interface DatosUsuario {
   telefono: string,
   ocupacion: string
 
+}
+
+export interface DatosMateria {
+  nrc: number,
+  nombreMateria: string;
+  seccion: number;
+  dias: string;
+  horaInicio: string;
+  horaFinal: string,
+  salon: string,
+  programa: string,
 }

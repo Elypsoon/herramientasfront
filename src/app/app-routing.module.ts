@@ -9,10 +9,12 @@ import { MateriasScreenComponent } from './screens/materias-screen/materias-scre
 const routes: Routes = [
   { path: '', component: LoginScreenComponent, pathMatch: 'full' },
   { path: 'registro', component: RegistroScreenComponent, pathMatch: 'full' },
+  { path: 'registro/:id', component: RegistroScreenComponent, pathMatch: 'full' },
   { path: 'home', component: HomeScreenComponent, pathMatch: 'full' },
+  { path: 'home/:materias', component: HomeScreenComponent, pathMatch: 'full' },
   { path: 'nuevoLogin', component: NuevoLoginComponent, pathMatch: 'full' },
   { path: 'productos', component: ProductoRegistroScreenComponent, pathMatch: 'full'},
-  { path: 'materias', component: MateriasScreenComponent, pathMatch: 'full'}
+  { path: 'registro-mat', component: MateriasScreenComponent, pathMatch: 'full'}
 ];
 
 @NgModule({
