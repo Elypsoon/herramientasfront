@@ -126,9 +126,29 @@ export class HomeScreenComponent {
         //Recargar página
         window.location.reload();
       }else{
-        alert("Usuario no eliminado ");
-        console.log("No se eliminó el usuario");
+        alert("Elemento no eliminado ");
+        console.log("No se eliminó el elemento");
         //alert("No se eliminó el usuario");
+      }
+    });
+  }
+
+  public deleteSub(nrcMat: number){
+    console.log("NRC:", nrcMat);
+    const dialogRefMat = this.dialog.open(EliminarUserModalComponent,{
+      data: {nrc: nrcMat}, //Se pasan valores a través del componente
+      height: '268px',
+      width: '328px',
+    });
+
+    dialogRefMat.afterClosed().subscribe(result => {
+      if(result.isDelete){
+        console.log("Materia eliminada");
+        //Recargar página
+        window.location.reload();
+      }else{
+        alert("Materia no eliminada ");
+        console.log("No se eliminó la materia");
       }
     });
   }
@@ -199,7 +219,7 @@ export interface DatosUsuario {
 
 export interface DatosMateria {
   nrc: number,
-  nombreMateria: string;
+  nombre: string;
   seccion: number;
   dias: string;
   horaInicio: string;

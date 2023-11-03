@@ -27,7 +27,7 @@ export class MateriasService {
   public esquemaMateria(){
     return {
       'nrc': '',
-      'nombreMateria': '',
+      'nombre': '',
       'seccion': '',
       'dias': '',
       'horaInicio': '',
@@ -101,6 +101,12 @@ export class MateriasService {
     var token = this.facadeService.getSessionToken();
     var headers = new HttpHeaders({ 'Content-Type': 'application/json' , 'Authorization': 'Bearer '+token});
     return this.http.put<any>(`${environment.url_api}/materias-edit/`, data, {headers:headers});
+  }
+
+  public eliminarMateria(nrc: number): Observable <any>{
+    var token = this.facadeService.getSessionToken();
+    var headers = new HttpHeaders({ 'Content-Type': 'application/json' , 'Authorization': 'Bearer '+token});
+    return this.http.delete<any>(`${environment.url_api}/materias-edit/?nrc=${nrc}`,{headers:headers});
   }
   
 }
