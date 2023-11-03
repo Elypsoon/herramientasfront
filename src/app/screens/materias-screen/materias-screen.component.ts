@@ -14,9 +14,8 @@ export class MateriasScreenComponent {
 
   //Aquí van las variables
   public editar:boolean = false;
-  public idUser: Number = 0;
   public mat: any = {};
-  public array_user: any[] = [];
+  public nrc: Number = 0;
   //Para contraseñas
   public hide_1: boolean = false;
   public hide_2: boolean = false;
@@ -34,6 +33,28 @@ export class MateriasScreenComponent {
 
   ngOnInit(): void {
     this.mat = this.materiaService.esquemaMateria();
+
+    if(this.activatedRoute.snapshot.params['nrc'] != undefined){
+      this.editar = true;
+      //Asignamos a nuestra variable global el valor del ID que viene por la URL
+      this.nrc = this.activatedRoute.snapshot.params['nrc'];
+      console.log("NRC: ", this.nrc);
+      //Al iniciar la vista obtiene el usuario por su ID
+      this.obtenerMatByNRC();
+    }
+    //Imprimir datos en consola
+    console.log("Materia: ", this.mat);
+  }
+
+  public obtenerMatByNRC(){
+    this.materiaService.getSubByNRC(this.nrc).subscribe(
+      (response)=>{
+        this.mat = response;
+        console.log("Datos materia: ", this.mat);
+      }, (error)=>{
+        alert("No se pudieron obtener los datos de la materia para editar");
+      }
+    );
   }
 
   public regresar(){
@@ -63,7 +84,25 @@ export class MateriasScreenComponent {
   }
 
   public actualizar(){
-    
+    //Validación
+    this.errors = [];
+
+    this.errors = this.materiaService.validarMateria(this.mat, this.editar);
+    if(!$.isEmptyObject(this.errors)){
+      return false;
+    }
+    console.log("Pasó la validación");
+
+    this.materiaService.editarMateria(this.mat).subscribe(
+      (response)=>{
+        alert("Materia editada correctamente");
+        console.log("Materia editada: ", response);
+        //Si se editó, entonces mandar al home
+        this.regresar();
+      }, (error)=>{
+        alert("No se pudo editar la materia");
+      }
+    );
   }
 
 }

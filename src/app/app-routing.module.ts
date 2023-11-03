@@ -14,7 +14,9 @@ const routes: Routes = [
   { path: 'home/:materias', component: HomeScreenComponent, pathMatch: 'full' },
   { path: 'nuevoLogin', component: NuevoLoginComponent, pathMatch: 'full' },
   { path: 'productos', component: ProductoRegistroScreenComponent, pathMatch: 'full'},
-  { path: 'registro-mat', component: MateriasScreenComponent, pathMatch: 'full'}
+  { path: 'registro-mat', component: MateriasScreenComponent, pathMatch: 'full'},
+  { path: 'registro-mat/:nrc', component: MateriasScreenComponent, pathMatch: 'full'}
+
 ];
 
 @NgModule({

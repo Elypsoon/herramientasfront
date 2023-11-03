@@ -11,15 +11,15 @@
             <div class="body-registro">
                 <mat-form-field class="mat-input" appearance="outline">
                     <mat-label>NRC</mat-label>
-                    <input matInput [(ngModel)]="mat.nrc" name="nrc" placeholder="Escribe el NRC" mask='00000'>
+                    <input matInput [(ngModel)]="mat.nrc" name="nrc" placeholder="Escribe el NRC" mask='00000' [disabled]="editar">
                 </mat-form-field>
                 <div *ngIf="errors.nrc" class="invalid-feedback">{{ errors.nrc }}</div>
 
                 <mat-form-field class="mat-input" appearance="outline">
                     <mat-label>Nombre de la materia</mat-label>
-                    <input matInput [(ngModel)]="mat.nombreMateria" placeholder="Escribe la materia">
+                    <input matInput [(ngModel)]="mat.nombre" placeholder="Escribe la materia">
                 </mat-form-field>
-                <div *ngIf="errors.nombreMateria" class="invalid-feedback">{{ errors.nombreMateria }}</div>
+                <div *ngIf="errors.nombre" class="invalid-feedback">{{ errors.nombreMateria }}</div>
     
                 <mat-form-field class="mat-input" appearance="outline">
                     <mat-label>Sección</mat-label>

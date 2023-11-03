@@ -7,7 +7,8 @@
                 <!-- <mat-icon class="icon-back" (click)="logout()">arrow_back</mat-icon> -->
                 <span class="title" *ngIf="!materias">Lista de usuarios</span>
                 <span class="title" *ngIf="materias">Lista de materias</span>
-                <button class="logout" mat-flat-button color="warn" (click)="logout()">Cerrar sesión</button>
+                <button class="logout" mat-flat-button color="warn" (click)="logout()" *ngIf="!materias">Cerrar sesión</button>
+                <button class="logout" mat-flat-button color="warn" (click)="goMaterias()" *ngIf="materias">Registrar materia</button>
             </div>
             <div class="body-home">
                 <div class="mat-elevation-z8">
@@ -126,7 +127,7 @@
                         <ng-container matColumnDef="editar">
                             <th mat-header-cell *matHeaderCellDef> Actualizar </th>
                             <td mat-cell *matCellDef="let element" class="td-editar">
-                                <i class="bi bi-pencil-square" (click)="goEditar(element.nrc)"></i> 
+                                <i class="bi bi-pencil-square" (click)="goEditarMat(element.nrc)"></i> 
                             </td>
                         </ng-container>
 

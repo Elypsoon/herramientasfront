@@ -99,6 +99,10 @@ export class HomeScreenComponent {
     this.router.navigate(["registro/"+idUser]);
   }
 
+  public goEditarMat(nrc: number){
+    this.router.navigate(["registro-mat/"+nrc]);
+  }
+
   public goListaMat(){
     this.router.navigate(["home/materias"]);
   }

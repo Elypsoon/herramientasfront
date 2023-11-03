@@ -17,7 +17,8 @@ export class EliminarUserModalComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log("Id user: ", this.data.id);
+    console.log("Llave: ", this.data.id);
+    console.log("Largo: ", this.data.length);
   }
 
   public cerrar_modal(){

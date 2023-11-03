@@ -41,24 +41,22 @@ export class MateriasService {
     console.log("Validando materia... ", data);
     let error: any = [];
 
-    if(!this.validatorService.required(data["nrc"])){
-      error["nrc"] = this.errorService.required;
-    }else if(!this.validatorService.numeric(data["nrc"])){
-      error["nrc"] = this.errorService.numeric;
+    if(!editar){
+      if(!this.validatorService.required(data["nrc"])){
+        error["nrc"] = this.errorService.required;
+      }else if(!this.validatorService.numeric(data["nrc"])){
+        error["nrc"] = this.errorService.numeric;
+      }
     }
 
-    if(!this.validatorService.required(data["nombreMateria"])){
-      error["nombreMateria"] = this.errorService.required;
+    if(!this.validatorService.required(data["nombre"])){
+      error["nombre"] = this.errorService.required;
     }
 
     if(!this.validatorService.required(data["seccion"])){
       error["seccion"] = this.errorService.required;
     }else if(!this.validatorService.numeric(data["seccion"])){
       error["seccion"] = this.errorService.numeric;
-    }
-
-    if(!editar){
-      
     }
 
     if(!this.validatorService.required(data["dias"])){
@@ -93,6 +91,16 @@ export class MateriasService {
     var token = this.facadeService.getSessionToken();
     var headers = new HttpHeaders({ 'Content-Type': 'application/json' , 'Authorization': 'Bearer '+token});
     return this.http.get<any>(`${environment.url_api}/lista-materias/`, {headers:headers});
+  }
+
+  public getSubByNRC(nrc: Number){
+    return this.http.get<any>(`${environment.url_api}/materias/?nrc=${nrc}`,httpOptions); 
+  }
+
+  public editarMateria (data: any): Observable <any>{
+    var token = this.facadeService.getSessionToken();
+    var headers = new HttpHeaders({ 'Content-Type': 'application/json' , 'Authorization': 'Bearer '+token});
+    return this.http.put<any>(`${environment.url_api}/materias-edit/`, data, {headers:headers});
   }
   
 }
