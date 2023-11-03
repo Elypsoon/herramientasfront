@@ -49,6 +49,17 @@ export class MateriasScreenComponent {
       //Pasa la validación y sale de la función
       return false;
     }
+
+    this.materiaService.registrarMateria(this.mat).subscribe(
+      (response)=>{
+        alert("Materia registrada correctamente");
+        console.log("Materia registrada: ", response);
+        this.router.navigate(["/"]);
+      }, (error)=>{
+        alert("No se pudo registrar la materia");
+        console.log(error);
+      }
+    );
   }
 
   public actualizar(){

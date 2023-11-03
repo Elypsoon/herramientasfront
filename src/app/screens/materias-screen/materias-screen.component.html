@@ -4,14 +4,14 @@
         <div class="section-registro">
             <div class="header-registro">
                 <mat-icon class="icon-back" (click)="regresar()">arrow_back</mat-icon>
-                <span *ngIf="!editar" class="title">Registrarse materia</span>
+                <span *ngIf="!editar" class="title">Registrar materia</span>
                 <span *ngIf="editar" class="title">Actualizar materia</span>
                 <mat-icon class="icon-forward">arrow_forward</mat-icon>
             </div>
             <div class="body-registro">
                 <mat-form-field class="mat-input" appearance="outline">
                     <mat-label>NRC</mat-label>
-                    <input matInput [(ngModel)]="mat.nrc" name="nrc" placeholder="Escribe el NRC" mask='0000'>
+                    <input matInput [(ngModel)]="mat.nrc" name="nrc" placeholder="Escribe el NRC" mask='00000'>
                 </mat-form-field>
                 <div *ngIf="errors.nrc" class="invalid-feedback">{{ errors.nrc }}</div>
 

@@ -7,12 +7,17 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { FacadeService } from './facade.service';
 
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
+
 @Injectable({
   providedIn: 'root'
 })
 export class MateriasService {
 
   constructor(
+    private http: HttpClient,
     public router: Router,
     private validatorService: ValidatorService,
     private errorService: ErrorsService,
@@ -78,6 +83,10 @@ export class MateriasService {
 
     return error;
     
+  }
+
+  public registrarMateria (data: any): Observable <any>{
+    return this.http.post<any>(`${environment.url_api}/materias/`,data, httpOptions);
   }
   
 }
