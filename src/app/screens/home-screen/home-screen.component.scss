@@ -8,6 +8,9 @@
     align-items: flex-start;
     background-color: #FFFFFF;
     overflow-x: hidden;
+    background-image: url("/assets/images/registroMat.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 
@@ -58,11 +61,10 @@
     color: #FFFFFF;
 }
 
-.logout-hide{
-    color: #0092B8!important;
-    background-color: transparent !important;
-    border: none;
-    cursor: auto;
+.alter{
+    color: rgb(255, 255, 255)!important;
+    background-color: #0527d3!important;
+    font-family: Nexa;
 }
 .logout{
     background-color: #E84150;

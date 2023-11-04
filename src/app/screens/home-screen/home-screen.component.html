@@ -2,8 +2,8 @@
     <div class="wrapper">
         <div class="section-home">
             <div class="header-home">
-                <button class="materias" mat-flat-button (click)="goListaMat()" *ngIf="!materias">Ver materias</button>
-                <button class="usuarios" mat-flat-button (click)="regresar()" *ngIf="materias">Ver usuarios</button>
+                <button class="alter" mat-flat-button (click)="goListaMat()" *ngIf="!materias">Ver materias</button>
+                <button class="alter" mat-flat-button (click)="regresar()" *ngIf="materias">Ver usuarios</button>
                 <!-- <mat-icon class="icon-back" (click)="logout()">arrow_back</mat-icon> -->
                 <span class="title" *ngIf="!materias">Lista de usuarios</span>
                 <span class="title" *ngIf="materias">Lista de materias</span>

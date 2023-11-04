@@ -6,7 +6,10 @@
     flex-direction: row;
     justify-content: center;
     align-items: flex-start;
-    background-color: #FFFFFF;
+    background-image: url("/assets/images/registroMat2.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow-x: hidden;
   }
   
   .section-registro{
@@ -25,7 +28,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    background-color: #0092B8;
+    background-color: #5000b8;
   }
   
   .title{
@@ -39,16 +42,16 @@
   
   .icon-back{
     padding-left: 1.5rem;
-    color: #FFFFFF;
+    color: rgb(0, 218, 222);
     font-size: 28pt;
-    width: 40px;
+    width: 50px;
     height: 40px;
     cursor: pointer;
   }
   
   .icon-forward{
     padding-right: 1.5rem;
-    color: #0092B8;
+    color: #5000b8;
     font-size: 28pt;
     width: 40px;
     height: 40px;
@@ -111,20 +114,24 @@
     color: #FFFFFF;
     opacity: 1;
   }
+
+  input{
+    height: 24px!important;
+  }
   
   mat-form-field{
     width: 100%!important;
-    height: 48px!important;
+    height: 52px!important;
     text-align: left!important;
   }
-  
+
   //Estilos mat-input
   ::ng-deep .mat-focused .mat-form-field-label {
     /*change color of label*/
     text-align: left;
     font-family: Nexa!important;
     font-size: 13px;
-    letter-spacing: 0px;
+    letter-spacing: 9px;
     color: #E84150 !important;
     opacity: 1;
   }

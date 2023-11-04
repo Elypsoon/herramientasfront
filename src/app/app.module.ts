@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,6 +25,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 //Cambia el idioma a español
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 //Mask
@@ -60,11 +61,15 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = {};
     MatPaginatorModule,
     MatDialogModule,
     MatSelectModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    NgxMaterialTimepickerModule
     ],
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: 'es-ES'},
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
+  ]
 })
 export class AppModule { }

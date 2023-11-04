@@ -7,6 +7,10 @@
   justify-content: center;
   align-items: flex-start;
   background-color: #FFFFFF;
+  background-image: url("/assets/images/fondoRegistro.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+    overflow-x: hidden;
 }
 
 .section-registro{
@@ -41,7 +45,7 @@
   padding-left: 1.5rem;
   color: #FFFFFF;
   font-size: 28pt;
-  width: 40px;
+  width: 50px;
   height: 40px;
   cursor: pointer;
 }

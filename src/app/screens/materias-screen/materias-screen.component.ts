@@ -52,6 +52,19 @@ export class MateriasScreenComponent {
     );
   }
 
+  public quitarSegundos(hora: string){
+    let horaFinal = hora.split(":");
+    return horaFinal[0] + ":" + horaFinal[1];
+  }
+
+  public changeHora(event :any){
+    console.log(event);
+    console.log(event.value.toISOString());
+    
+    this.mat.horaInicio = event.value.toISOString().split(":")[0] + ":" + event.value.toISOString().split(":")[1];
+    console.log("Hora: ", this.mat.horaInicio);
+  }
+
   public regresar(){
     this.location.back();
   }
@@ -70,7 +83,7 @@ export class MateriasScreenComponent {
       (response)=>{
         alert("Materia registrada correctamente");
         console.log("Materia registrada: ", response);
-        this.router.navigate(["/"]);
+        this.regresar();
       }, (error)=>{
         alert("No se pudo registrar la materia");
         console.log(error);

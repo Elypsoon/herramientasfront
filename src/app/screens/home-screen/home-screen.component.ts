@@ -61,7 +61,6 @@ export class HomeScreenComponent {
 
       this.obtenerMaterias();
     }
-
     //Para paginador
     this.initPaginator();
   }
@@ -79,7 +78,11 @@ export class HomeScreenComponent {
   //Paginador para Agentes
   public initPaginator(){
     setTimeout(() => {
-      this.dataSource.paginator = this.paginator;
+      if(this.materias){
+        this.dataSourceMat.paginator = this.paginator;
+      }else{
+        this.dataSource.paginator = this.paginator;
+      }
       //console.log("Paginator: ", this.dataSourceIngresos.paginator);
       //Modificar etiquetas del paginador a español
       this.paginator._intl.itemsPerPageLabel = 'Registros por página';
